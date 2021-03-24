@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+  - role: role-ftp-file-system-usage

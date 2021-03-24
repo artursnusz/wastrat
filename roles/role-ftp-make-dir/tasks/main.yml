@@ -1,0 +1,17 @@
+- name: Cancell execution if paramaters are not defined or empty
+  fail:
+   msg: Parameters not defined or empty
+  when: ( ftp_dir_user | default('') | length == 0) or ( ftp_dir | default('') | length == 0)
+
+- name: Check if "FTP make dir" script exist
+  stat:
+   path: "{{ ftp_make_dir_path }}"
+  register: register_name
+ 
+- name: Cancell execution
+  fail:
+   msg: Script "FTP make dir" does not exist!!!!
+  when: register_name.stat.exists == false
+
+- name: Execute the script "FTP make dir"
+  command: sh "{{ ftp_make_dir_path }}" -u "{{ ftp_dir_user }}" -d "{{ ftp_dir }}"

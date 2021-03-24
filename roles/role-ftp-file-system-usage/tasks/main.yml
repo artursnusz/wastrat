@@ -1,0 +1,12 @@
+- name: Check if "FTP file system usage" script exist
+  stat:
+   path: "{{ ftp_file_system_usage_path }}"
+  register: register_name
+ 
+- name: Cancell execution
+  fail:
+   msg: Script "FTP file system usage"" does not exist!!!!
+  when: register_name.stat.exists == false
+
+- name: Execute the script "FTP file system usage"
+  command: sh "{{ ftp_file_system_usage_path }}"

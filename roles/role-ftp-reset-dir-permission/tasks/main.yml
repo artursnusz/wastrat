@@ -1,0 +1,12 @@
+- name: Check if "FTP file reset dir permissions" script exist
+  stat:
+   path: "{{ ftp_reset_dir_permissions_path }}"
+  register: register_name
+ 
+- name: Cancell execution
+  fail:
+   msg: Script "FTP file reset dir permissions" does not exist!!!!
+  when: register_name.stat.exists == false
+
+- name: Execute the script "FTP file reset dir permissions"
+  command: sh "{{ ftp_reset_dir_permissions_path }}" -sb

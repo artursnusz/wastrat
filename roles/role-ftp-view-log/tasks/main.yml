@@ -1,0 +1,17 @@
+- name: Cancell execution if paramaters are not defined or empty
+  fail:
+    msg: Parameters not defined or empty
+  when: ( ftp_log_user | default('') | length == 0)
+
+- name: Check if "FTP view log" script exist
+  stat:
+    path: "{{ ftp_view_log_path }}"
+  register: register_name
+
+- name: Cancell execution
+  fail:
+    msg: Script "FTP view log" does not exist!!!!
+  when: register_name.stat.exists == false
+
+- name: Execute the script "FTP view log"
+  command: sh "{{ ftp_view_log_path }}" "{{ ftp_log_user }}"

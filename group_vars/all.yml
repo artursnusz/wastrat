@@ -1,0 +1,9 @@
+# Common variables for all hosts
+ansible_user: test
+ansible_connection: ssh
+ansible_ssh_key: "/test"
+ftp_disk_usage_path: "/cgk/unix/scripts/eandisFTPJenkins/diskUsageFTP.sh"
+ftp_file_system_usage_path: "/cgk/unix/scripts/eandisFTPJenkins/fileSystemUsageFTP.sh"
+ftp_make_dir_path: "/cgk/unix/scripts/eandisFTPJenkins/mkFtpDir.sh"
+ftp_reset_dir_permissions_path: "/cgk/unix/scripts/eandisFTPJenkins/resetFtpDirPermissions.sh"
+ftp_view_log_path: "/cgk/unix/scripts/eandisFTPJenkins/viewFtpLog.sh"
